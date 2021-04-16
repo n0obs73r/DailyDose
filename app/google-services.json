@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "711063583465",
+    "project_id": "mychittor-6029c",
+    "storage_bucket": "mychittor-6029c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711063583465:android:a48253c28d232a79fe8e78",
+        "android_client_info": {
+          "package_name": "com.example.mychittor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711063583465-7laul756dq5m0mttip8099mgcbnlpq60.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_woqbCvJV9rPlFVV9nHouhlUal5joHOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711063583465-7laul756dq5m0mttip8099mgcbnlpq60.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
