@@ -21,22 +21,10 @@ class SignupActivity : AppCompatActivity() {
         var passText : EditText = findViewById(R.id.InputPassword)
         val email : Editable? = userText.getText()
         val password : Editable? = passText.getText()
-        val button : Button = findViewById(R.id.signup)
-
-    }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
-
-        var userText : EditText = findViewById(R.id.InputEmail)
-        var passText : EditText = findViewById(R.id.InputPassword)
-        val email : Editable? = userText.getText()
-        val password : Editable? = passText.getText()
-        val button : Button = findViewById(R.id.signup)
-
-        button.setOnClickListener { signup() }
 
         auth = FirebaseAuth.getInstance()
+
+
         auth.createUserWithEmailAndPassword(email.toString(), password.toString()).addOnCompleteListener(this, OnCompleteListener{ task ->
             if(task.isSuccessful){
                 Toast.makeText(this, "Successfully Registered", Toast.LENGTH_LONG).show()
@@ -44,8 +32,27 @@ class SignupActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }else {
-                Toast.makeText(this, "Registration Failed", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Registration Failed"+ task.exception!!.message, Toast.LENGTH_LONG).show()
             }
         })
+
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_signup)
+//
+//        var userText : EditText = findViewById(R.id.InputEmail)
+//        var passText : EditText = findViewById(R.id.InputPassword)
+//        val email : Editable? = userText.getText()
+//        val password : Editable? = passText.getText()
+        val button : Button = findViewById(R.id.signup)
+        val button2 : Button = findViewById(R.id.button2)
+        button2.setOnClickListener {
+            val intent2 = Intent(this, LoginActivity::class.java)
+            startActivity(intent2)
+        }
+
+        button.setOnClickListener { signup() }
+
     }
 }
