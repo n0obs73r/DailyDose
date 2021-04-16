@@ -23,7 +23,6 @@ class SignupActivity : AppCompatActivity() {
         val password : Editable? = passText.getText()
 
         auth = FirebaseAuth.getInstance()
-
         auth.createUserWithEmailAndPassword(email.toString(), password.toString()).addOnCompleteListener(this, OnCompleteListener{ task ->
             if(task.isSuccessful){
                 Toast.makeText(this, "Successfully Registered", Toast.LENGTH_LONG).show()
