@@ -29,7 +29,7 @@ object NewsUtils {
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun fetchNewsData(requestUrl: String?): ArrayList<NewsData?>? {
+    fun fetchNewsData(requestUrl: String?): ArrayList<NewsData?>? {
 
         val url = createUrl(requestUrl)
         var jsonResponse : String? = null

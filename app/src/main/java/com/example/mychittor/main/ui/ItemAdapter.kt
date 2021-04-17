@@ -13,10 +13,10 @@ import com.example.mychittor.NewsData
 import com.example.mychittor.R
 
 
-class ItemAdapter(context: Context, items: ArrayList<NewsData>) :
+class ItemAdapter(context: Context?, items: ArrayList<NewsData?>?) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
-    var context: Context
-    private val items: ArrayList<NewsData>
+    var context: Context?
+    var items: ArrayList<NewsData?>?
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
         val layout = inflater.inflate(R.layout.news_items, null) as LinearLayout
@@ -24,22 +24,22 @@ class ItemAdapter(context: Context, items: ArrayList<NewsData>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
-        val item: NewsData = items[i]
-        val title: String? = item.mTitle
+        val item: NewsData? = items!![i]
+        val title: String? = item!!.mTitle
         val url: String? = item.mWebURL
         holder.editTitle.text = title
         holder.mybutton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
 
                 val uri : Uri = Uri.parse(url)
-                context.startActivity(Intent(Intent.ACTION_VIEW, uri))
+                context?.startActivity(Intent(Intent.ACTION_VIEW, uri))
 
             }
         })
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return items!!.size
     }
 
      inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -54,6 +54,6 @@ class ItemAdapter(context: Context, items: ArrayList<NewsData>) :
 
     init {
         this.context = context
-        this.items = items
+        this.items = items!!
     }
 }
