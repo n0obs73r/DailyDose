@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         tabLayout = findViewById<TabLayout>(R.id.tabs)
         viewPager = findViewById<ViewPager>(R.id.view_pager)
 
-        tabLayout!!.addTab(tabLayout!!.newTab().setText("Corona Updates"))
         tabLayout!!.addTab(tabLayout!!.newTab().setText("News"))
+        tabLayout!!.addTab(tabLayout!!.newTab().setText("Corona"))
         tabLayout!!.addTab(tabLayout!!.newTab().setText("Groceries"))
         tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
 

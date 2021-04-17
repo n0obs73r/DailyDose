@@ -1,9 +1,6 @@
 package com.example.mychittor.main.ui
 
-import android.os.Build
-import android.os.PersistableBundle.readFromStream
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.example.mychittor.NewsData
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -13,11 +10,10 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
-import java.net.*
 
 object NewsUtils {
 
-    private val LOG_TAG = "NewsUtils::class"
+    private const val LOG_TAG = "NewsUtils::class"
     private fun createUrl(urlString: String?): URL? {
         var url: URL? = null
         try  {
@@ -28,9 +24,7 @@ object NewsUtils {
         return url
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun fetchNewsData(requestUrl: String?): ArrayList<NewsData?>? {
-
         val url = createUrl(requestUrl)
         var jsonResponse : String? = null
         try {
@@ -57,7 +51,6 @@ object NewsUtils {
         return newsItems
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun makeRequest(url: URL?): String? {
         var jsonResponse: String? = ""
         if (url == null) {
@@ -73,7 +66,7 @@ object NewsUtils {
             urlConnection.connect()
             if (urlConnection.responseCode == 200) {
                 inputStream = urlConnection.inputStream
-                jsonResponse = readFromInputStream(inputStream).toString()
+                jsonResponse = readFromInputStream(inputStream)
             }
         } catch (e: IOException) {
         } finally {

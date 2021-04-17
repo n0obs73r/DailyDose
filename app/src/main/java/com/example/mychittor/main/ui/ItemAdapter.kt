@@ -7,16 +7,13 @@ import android.widget.Button
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mychittor.NewsData
 import com.example.mychittor.R
 
 
-class ItemAdapter(context: Context?, items: ArrayList<NewsData?>?) :
+class ItemAdapter(private val context: Context?, val  items: ArrayList<NewsData?>?) :
     RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
-    var context: Context?
-    var items: ArrayList<NewsData?>?
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
         val layout = inflater.inflate(R.layout.news_items, null) as LinearLayout
@@ -28,14 +25,10 @@ class ItemAdapter(context: Context?, items: ArrayList<NewsData?>?) :
         val title: String? = item!!.mTitle
         val url: String? = item.mWebURL
         holder.editTitle.text = title
-        holder.mybutton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-
-                val uri : Uri = Uri.parse(url)
-                context?.startActivity(Intent(Intent.ACTION_VIEW, uri))
-
-            }
-        })
+        holder.mybutton.setOnClickListener {
+            val uri: Uri = Uri.parse(url)
+            context?.startActivity(Intent(Intent.ACTION_VIEW, uri))
+        }
     }
 
     override fun getItemCount(): Int {
@@ -43,17 +36,14 @@ class ItemAdapter(context: Context?, items: ArrayList<NewsData?>?) :
     }
 
      inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var editTitle: TextView
-        var mybutton: Button
+        var editTitle: TextView = itemView.findViewById(R.id.tittle1)
+         var mybutton: Button = itemView.findViewById(R.id.details)
+     }
 
-        init {
-            editTitle = itemView.findViewById(R.id.tittle1)
-            mybutton = itemView.findViewById(R.id.details)
+    fun updateData(newItems : ArrayList<NewsData?>?) {
+        items?.clear()
+        if (newItems != null) {
+            items?.addAll(newItems)
         }
-    }
-
-    init {
-        this.context = context
-        this.items = items!!
     }
 }

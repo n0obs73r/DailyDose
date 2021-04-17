@@ -15,32 +15,33 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.GlobalScope
 import okhttp3.Dispatcher
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.concurrent.thread
 
 
 class News : Fragment() {
-    private lateinit var newsListAdapter: ItemAdapter
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var newsItemAdapter : ItemAdapter
     val API_URL = "https://newsapi.org/v2/top-headlines?country=in&apiKey=f0ffb8c0678d4bc5b3dc8f507c07450d"
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val recyclerView = inflater.inflate(R.layout.fragment_news, container, false) as RecyclerView
+        recyclerView = inflater.inflate(R.layout.fragment_news, container, false) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
+        newsItemAdapter = ItemAdapter(context, ArrayList())
+        recyclerView.adapter = newsItemAdapter
+        return recyclerView
+    }
 
-        newsListAdapter = ItemAdapter(context, ArrayList())
-        recyclerView.adapter = newsListAdapter
-
-        // Inflate the layout for this fragment
-        GlobalScope.launch(Dispatchers.IO) {
-            recyclerView.adapter.items = getData()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        thread {
+            newsItemAdapter.updateData(getData())
         }
-        return inflater.inflate(R.layout.fragment_news, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    fun getData() : ArrayList<NewsData?>? {
-        return NewsUtils.fetchNewsData(API_URL)
-    }
-
+    private fun getData() : ArrayList<NewsData?>? =
+        NewsUtils.fetchNewsData(API_URL)
 }
