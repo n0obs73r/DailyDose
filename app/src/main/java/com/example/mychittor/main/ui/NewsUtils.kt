@@ -73,7 +73,7 @@ object NewsUtils {
             urlConnection.connect()
             if (urlConnection.responseCode == 200) {
                 inputStream = urlConnection.inputStream
-                jsonResponse = readFromStream(inputStream).toString()
+                jsonResponse = readFromInputStream(inputStream).toString()
             }
         } catch (e: IOException) {
         } finally {
