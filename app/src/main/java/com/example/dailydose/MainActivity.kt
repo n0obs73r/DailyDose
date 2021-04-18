@@ -1,9 +1,9 @@
-package com.example.mychittor
+package com.example.dailydose
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.example.mychittor.ui.main.SectionsPagerAdapter
+import com.example.dailydose.ui.main.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {

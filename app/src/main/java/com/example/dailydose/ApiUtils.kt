@@ -1,7 +1,7 @@
-package com.example.mychittor
+package com.example.dailydose
 
 import android.util.Log
-import com.example.mychittor.ui.main.NewsItemModel
+import com.example.dailydose.ui.main.NewsItemModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONException

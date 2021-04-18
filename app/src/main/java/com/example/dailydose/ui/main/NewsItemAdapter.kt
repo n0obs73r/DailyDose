@@ -1,4 +1,4 @@
-package com.example.mychittor.ui.main
+package com.example.dailydose.ui.main
 
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mychittor.R
+import com.example.dailydose.R
 import com.squareup.picasso.Picasso
 
 class NewsItemAdapter(private val newsItems: ArrayList<NewsItemModel>)

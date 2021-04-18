@@ -1,10 +1,10 @@
- package com.example.mychittor.ui.main
+ package com.example.dailydose.ui.main
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.mychittor.R
+import com.example.dailydose.R
 
 private val TAB_TITLES = arrayOf(
     R.string.news_tab,

@@ -1,9 +1,9 @@
-package com.example.mychittor.ui.main
+package com.example.dailydose.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mychittor.ApiUtils
+import com.example.dailydose.ApiUtils
 import kotlinx.coroutines.launch
 
 class PageViewModel : ViewModel() {

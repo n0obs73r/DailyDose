@@ -1,4 +1,4 @@
-package com.example.mychittor
+package com.example.dailydose
 
 import android.content.Intent
 import android.os.Bundle

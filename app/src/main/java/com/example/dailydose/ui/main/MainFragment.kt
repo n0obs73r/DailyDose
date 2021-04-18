@@ -1,4 +1,4 @@
-package com.example.mychittor.ui.main
+package com.example.dailydose.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mychittor.R
+import com.example.dailydose.R
+
 
 class MainFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel
@@ -26,6 +28,12 @@ class MainFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_news, container, false)
         val recyclerView = root.findViewById<RecyclerView>(R.id.news_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                recyclerView.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
         recyclerView.adapter = newsItemAdapter
         return root
     }
