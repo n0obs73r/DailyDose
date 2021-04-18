@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class PageViewModel : ViewModel() {
 
-    private val apiUrl = "https://content.guardianapis.com/technology?page-size=20&api-key=42b74d66-8cdf-453f-a2c5-32ec213f21f3&"
+    private val apiUrl = "https://content.guardianapis.com/search?q=india&api-key=42b74d66-8cdf-453f-a2c5-32ec213f21f3&&show-fields=thumbnail"
     val newsItems = MutableLiveData<ArrayList<NewsItemModel>>()
 
     init {

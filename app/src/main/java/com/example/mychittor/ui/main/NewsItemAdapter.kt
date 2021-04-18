@@ -1,14 +1,17 @@
 package com.example.mychittor.ui.main
 
 import android.content.Intent
+import android.media.Image
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mychittor.R
+import com.squareup.picasso.Picasso
 
 class NewsItemAdapter(private val newsItems: ArrayList<NewsItemModel>)
     : RecyclerView.Adapter<NewsItemAdapter.NewsViewHolder>() {
@@ -19,11 +22,14 @@ class NewsItemAdapter(private val newsItems: ArrayList<NewsItemModel>)
 
         fun bindTo(newsItem : NewsItemModel) {
             titleTextView.text = newsItem.title
+            Picasso.get().load(newsItem.imageUrl).into(thumbnail);
             linkButton.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(newsItem.link))
                 linkButton.context.startActivity(intent)
             }
+
         }
+        val thumbnail : ImageView = view.findViewById(R.id.news_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {

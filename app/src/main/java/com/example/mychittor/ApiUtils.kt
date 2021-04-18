@@ -99,7 +99,11 @@ object ApiUtils {
                 val currNewsObject = newsItemsArray.getJSONObject(i)
                 val title = currNewsObject.getString("webTitle")
                 val webURL = currNewsObject.getString("webUrl")
-                newsItems.add(NewsItemModel(title, webURL))
+                var imageUrl = ""
+                if(currNewsObject.has("fields")) {
+                    imageUrl = currNewsObject.getJSONObject("fields").getString("thumbnail")
+                }
+                newsItems.add(NewsItemModel(title, webURL, imageUrl))
             }
         } catch (e: JSONException) {
             Log.e(LOG_TAG, "Problem parsing the earthquake JSON results.", e)
