@@ -4,7 +4,7 @@ This application displays the latest updates from "https://open-platform.theguar
 
 ## Required Permissions
     android.permission.INTERNET
-    android:name="android.permission.ACCESS_NETWORK_STATE
+    android.permission.ACCESS_NETWORK_STATE
 
 ## Libraries
 - Kotlin
