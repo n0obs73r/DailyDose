@@ -2,17 +2,17 @@ package com.example.dailydose.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.dailydose.CoronaUtils
+import kotlinx.coroutines.launch
 
 class CoronaViewModel : ViewModel() {
-    public var activeCasesCountry = MutableLiveData<Int>()
-    public var deathsCountry = MutableLiveData<Int>()
-    var recoveredCountry = MutableLiveData<Int>()
+    private val apiCountryUrl = "https://corona.lmao.ninja/v3/covid-19/countries/"
+    val countryCases = MutableLiveData<CaseModel>()
 
-    var activeCasesState = MutableLiveData<Int>()
-    var deathsState = MutableLiveData<Int>()
-    var recoveredState = MutableLiveData<Int>()
-
-    var activeCasesDistrict = MutableLiveData<Int>()
-    var deathsDistrict = MutableLiveData<Int>()
-    var recoveredDistrict = MutableLiveData<Int>()
+    fun getCountryCases(country: String) {
+        viewModelScope.launch {
+            countryCases.postValue(CoronaUtils.fetchCases(apiCountryUrl + country))
+        }
+    }
 }

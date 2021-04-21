@@ -33,7 +33,7 @@ object ApiUtils {
         return data
     }
 
-    private fun createUrl(urlString: String): URL? {
+    fun createUrl(urlString: String): URL? {
         var url: URL? = null
         try {
             url = URL(urlString)
@@ -44,7 +44,7 @@ object ApiUtils {
     }
 
     @Throws(IOException::class)
-    private fun makeHttpRequest(url: URL?): String {
+    fun makeHttpRequest(url: URL?): String {
         var jsonResponse = ""
         if (url == null) {
             return jsonResponse

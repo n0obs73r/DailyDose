@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string-array name="countries">
         <item>Select Country</item>
         <item>Afghanistan</item>
@@ -265,7 +264,4 @@
         <item>Dadra and Nagar Haveli and Daman and Diu</item>
         <item>Lakshadweep</item>
     </string-array>
-
-
-
 </resources>
