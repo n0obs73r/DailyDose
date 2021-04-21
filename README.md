@@ -21,8 +21,7 @@ if your change is substantial, please raise an issue.
 
 # Credits
 Thanks to [COVID19India.org](https://github.com/covid19india/api) for open-source API 
-and 
-RaviKumawat[RaviKumawat](https://https://github.com/ravi4k)
+and [RaviKumawat](https://https://github.com/ravi4k)
 
 ## Maintainer
 Aryan Dadheech <aryan.prince999@gmail.com>
