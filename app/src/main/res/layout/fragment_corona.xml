@@ -4,9 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    android:orientation="vertical"
-    tools:context=".CoronaFragment">
+    android:layout_margin="16dp"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/cases_selection"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:layout_margin="8dp"
+            android:id="@+id/total_cases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total" />
+        <RadioButton
+            android:layout_margin="8dp"
+            android:id="@+id/current_cases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today" />
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -17,12 +37,14 @@
             android:id="@+id/country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-black"
             android:text="Select Country : " />
 
         <Spinner
             android:id="@+id/countrySpinner"
+            android:entries="@array/countries"
             android:layout_width="322dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
@@ -36,7 +58,7 @@
         android:layout_margin="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="0dp"
         app:cardMaxElevation="12dp">
 
         <LinearLayout
@@ -57,21 +79,22 @@
                     android:layout_margin="5dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="0dp"
                     app:cardMaxElevation="12dp">
 
-                    <EditText
-                        android:id="@+id/activeCaseShow"
+                    <TextView
+                        android:id="@+id/active_country_count"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_marginTop="4dp"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
                         android:id="@+id/activeCountry"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
                         android:text="Active Cases" />
@@ -86,25 +109,26 @@
                     android:layout_margin="5dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="0dp"
                     app:cardMaxElevation="12dp">
 
 
                     <TextView
-                        android:id="@+id/DeathsCountry"
+                        android:id="@+id/Deaths_country"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:fontFamily="sans-serif-condensed"
                         android:text="Deaths Cases " />
 
-                    <EditText
-                        android:id="@+id/DeathsShow"
+                    <TextView
+                        android:id="@+id/deaths_country_count"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_marginTop="4dp"
+                        android:layout_height="wrap_content"/>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
@@ -121,7 +145,7 @@
                     android:layout_margin="5dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="0dp"
                     app:cardMaxElevation="12dp">
 
                     <TextView
@@ -129,17 +153,18 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:fontFamily="sans-serif-condensed"
                         android:text="Total Recovered " />
 
 
-                    <EditText
-                        android:id="@+id/recoveredShow"
+                    <TextView
+                        android:id="@+id/recovered_country_count"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_marginTop="4dp"
+                        android:layout_height="wrap_content"/>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>
@@ -158,11 +183,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="15dp"
             android:fontFamily="sans-serif-black"
             android:text="Select State : " />
 
         <Spinner
             android:id="@+id/stateSpinner"
+            android:entries="@array/states"
             android:layout_width="322dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
@@ -176,7 +203,7 @@
         android:layout_margin="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="0dp"
         app:cardMaxElevation="12dp">
 
         <LinearLayout
@@ -197,22 +224,23 @@
                     android:layout_margin="5dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="0dp"
                     app:cardMaxElevation="12dp">
 
-                    <EditText
-                        android:id="@+id/activeCaseShowState"
+                    <TextView
+                        android:id="@+id/active_state_count"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_marginTop="4dp"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:id="@+id/activeState"
+                        android:id="@+id/active_state"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:fontFamily="sans-serif-condensed"
                         android:text="Active Cases" />
 
@@ -226,25 +254,26 @@
                     android:layout_margin="5dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="0dp"
                     app:cardMaxElevation="12dp">
 
 
                     <TextView
-                        android:id="@+id/DeathsState"
+                        android:id="@+id/deaths_state"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:fontFamily="sans-serif-condensed"
                         android:text="Deaths Cases " />
 
-                    <EditText
-                        android:id="@+id/DeathsShowState"
+                    <TextView
+                        android:id="@+id/deaths_state_count"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_marginTop="4dp"
+                        android:layout_height="wrap_content"/>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
@@ -261,25 +290,26 @@
                     android:layout_margin="5dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="0dp"
                     app:cardMaxElevation="12dp">
 
                     <TextView
-                        android:id="@+id/recoveredState"
+                        android:id="@+id/recovered_state"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
                         android:text="Total Recovered " />
 
 
-                    <EditText
-                        android:id="@+id/recoveredShowState"
+                    <TextView
+                        android:id="@+id/recovered_state_count"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_marginTop="4dp"
+                        android:layout_height="wrap_content"/>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>
@@ -287,21 +317,24 @@
 
 
     ////////////////////////////////////////////////////////////////////////////////
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/City"
+            android:id="@+id/district"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="15dp"
             android:fontFamily="sans-serif-black"
-            android:text="Select City : " />
+            android:text="Select District : " />
 
         <Spinner
-            android:id="@+id/citySpinner"
+            android:id="@+id/districtSpinner"
             android:layout_width="322dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
@@ -315,7 +348,7 @@
         android:layout_margin="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="0dp"
         app:cardMaxElevation="12dp">
 
         <LinearLayout
@@ -336,21 +369,22 @@
                     android:layout_margin="5dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="0dp"
                     app:cardMaxElevation="12dp">
 
-                    <EditText
-                        android:id="@+id/activeCaseShowcity"
+                    <TextView
+                        android:id="@+id/active_district_count"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_marginTop="4dp"
+                        android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:id="@+id/activeCity"
+                        android:id="@+id/active_districte"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
                         android:text="Active Cases" />
@@ -365,25 +399,26 @@
                     android:layout_margin="5dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="0dp"
                     app:cardMaxElevation="12dp">
 
 
                     <TextView
-                        android:id="@+id/DeathsCity"
+                        android:id="@+id/deaths_district"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-condensed"
                         android:text="Deaths Cases " />
 
-                    <EditText
-                        android:id="@+id/DeathsShowCity"
+                    <TextView
+                        android:id="@+id/deaths_district_count"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_marginTop="4dp"
+                        android:layout_height="wrap_content"/>
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
@@ -400,27 +435,30 @@
                     android:layout_margin="5dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
+                    app:cardElevation="0dp"
                     app:cardMaxElevation="12dp">
 
                     <TextView
-                        android:id="@+id/recoveredCity"
+                        android:id="@+id/recovered_district"
                         android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:fontFamily="sans-serif-condensed"
                         android:text="Total Recovered " />
 
 
-                    <EditText
-                        android:id="@+id/recoveredShowCity"
+                    <TextView
+                        android:id="@+id/recovered_district_count"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:layout_marginTop="4dp"
+                        android:layout_height="wrap_content"/>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
 </LinearLayout>

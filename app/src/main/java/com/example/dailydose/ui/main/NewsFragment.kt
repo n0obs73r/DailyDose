@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dailydose.R
 
 
-class MainFragment : Fragment() {
-    private lateinit var pageViewModel: PageViewModel
+class NewsFragment : Fragment() {
+    private lateinit var newsViewModel: NewsViewModel
     private val newsItemAdapter = NewsItemAdapter(ArrayList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pageViewModel = ViewModelProvider(this).get(PageViewModel::class.java)
+        newsViewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -40,7 +40,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        pageViewModel.newsItems.observe(this, { newsItems ->
+        newsViewModel.newsItems.observe(this, { newsItems ->
             newsItemAdapter.update(newsItems)
         })
     }

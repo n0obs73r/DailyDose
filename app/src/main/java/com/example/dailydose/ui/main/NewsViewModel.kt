@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.dailydose.ApiUtils
 import kotlinx.coroutines.launch
 
-class PageViewModel : ViewModel() {
+class NewsViewModel : ViewModel() {
 
     private val apiUrl = "https://content.guardianapis.com/search?q=india&api-key=42b74d66-8cdf-453f-a2c5-32ec213f21f3&&show-fields=thumbnail&page-size=30"
     val newsItems = MutableLiveData<ArrayList<NewsItemModel>>()

@@ -15,7 +15,10 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        return MainFragment()
+        return when(position) {
+            0 -> NewsFragment()
+            else -> CoronaFragment()
+        }
     }
 
     override fun getPageTitle(position: Int): CharSequence {
