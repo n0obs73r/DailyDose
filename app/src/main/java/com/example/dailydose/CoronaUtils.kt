@@ -1,6 +1,5 @@
 package com.example.dailydose
 
-import android.icu.text.StringPrepParseException
 import android.util.Log
 import com.example.dailydose.ui.main.CaseModel
 import kotlinx.coroutines.Dispatchers
@@ -18,11 +17,11 @@ object CoronaUtils {
         extractCountryData(getResponse(api))
     }
 
-    suspend fun getStateCases(api: String) : ArrayList<CaseModel> = withContext(Dispatchers.IO) {
+    suspend fun getStateCases(api: String) : Map<String, CaseModel> = withContext(Dispatchers.IO) {
         extractSateData(getResponse(api))
     }
 
-    fun getResponse(api: String) : String {
+    private fun getResponse(api: String) : String {
         val url = ApiUtils.createUrl(api)
         var jsonResponse = ""
         try {
@@ -57,12 +56,22 @@ object CoronaUtils {
         return cases
     }
 
-    private fun extractSateData(response: String) : ArrayList<CaseModel> {
-        val cases = ArrayList<CaseModel>()
+    private fun extractSateData(response: String) : Map<String, CaseModel> {
+        val cases = mutableMapOf<String, CaseModel>()
         if(response.isEmpty())
             return cases
 
         try {
+            val data = JSONObject(response).getJSONObject("data")
+            val states = data.getJSONArray("statewise")
+            for(i in 0 until states.length()) {
+                val currState = states[i] as JSONObject
+                val stateName = currState.getString("state")
+                val activeTotal = currState.getInt("active")
+                val recoveredTotal = currState.getInt("recovered")
+                val deathsTotal = currState.getInt("deaths")
+                cases[stateName] = CaseModel(activeTotal, recoveredTotal, deathsTotal)
+            }
         } catch (e: JSONException) {
             Log.e(LOG_TAG, "Problem parsing the earthquake JSON results.", e)
         } catch (e: ParseException) {
