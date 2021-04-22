@@ -24,6 +24,9 @@ class CoronaFragment : Fragment() {
         coronaViewModel.countryCases.observe(this, { country ->
             updateCountryCases(country)
         })
+        coronaViewModel.stateCases.observe(this, { state ->
+            updateStateCases(state)
+        })
         root = inflater.inflate(R.layout.fragment_corona, container, false)
         return root
     }
@@ -31,7 +34,15 @@ class CoronaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val stateSpinner = view.findViewById<Spinner>(R.id.stateSpinner)
         val countrySpinner = view.findViewById<Spinner>(R.id.countrySpinner)
+        stateSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+                coronaViewModel.getStateCases(parent.getItemAtPosition(pos) as String)
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
         countrySpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 coronaViewModel.getCountryCases(parent.getItemAtPosition(pos) as String)
@@ -49,5 +60,15 @@ class CoronaFragment : Fragment() {
         activeCases.text = country.activeTotal.toString()
         deaths.text = country.deathsTotal.toString()
         recovered.text = country.recoveredTotal.toString()
+    }
+
+    private fun updateStateCases(state: CaseModel) {
+        val activeCases = root.findViewById<TextView>(R.id.active_state_count)
+        val deaths = root.findViewById<TextView>(R.id.deaths_state_count)
+        val recovered = root.findViewById<TextView>(R.id.recovered_state_count)
+
+        activeCases.text = state.activeTotal.toString()
+        deaths.text = state.deathsTotal.toString()
+        recovered.text = state.recoveredTotal.toString()
     }
 }

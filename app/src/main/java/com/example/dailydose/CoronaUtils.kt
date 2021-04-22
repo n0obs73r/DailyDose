@@ -1,5 +1,6 @@
 package com.example.dailydose
 
+import android.icu.text.StringPrepParseException
 import android.util.Log
 import com.example.dailydose.ui.main.CaseModel
 import kotlinx.coroutines.Dispatchers
@@ -9,18 +10,27 @@ import org.json.JSONObject
 import java.io.IOException
 import java.text.ParseException
 
+
 object CoronaUtils {
     private val LOG_TAG: String = CoronaUtils::class.java.simpleName
 
-    suspend  fun fetchCases(countryUrl: String) = withContext(Dispatchers.IO) {
-        val url = ApiUtils.createUrl(countryUrl)
+    suspend fun getCountryData(api: String) : CaseModel = withContext(Dispatchers.IO) {
+        extractCountryData(getResponse(api))
+    }
+
+    suspend fun getStateCases(api: String) : ArrayList<CaseModel> = withContext(Dispatchers.IO) {
+        extractSateData(getResponse(api))
+    }
+
+    fun getResponse(api: String) : String {
+        val url = ApiUtils.createUrl(api)
         var jsonResponse = ""
         try {
             jsonResponse = ApiUtils.makeHttpRequest(url)
         } catch (e: IOException) {
             Log.e(LOG_TAG, "Problem making HTTP request.", e)
         }
-        extractCountryData(jsonResponse)
+        return jsonResponse
     }
 
     private fun extractCountryData(jsonResponse: String): CaseModel {
@@ -39,6 +49,20 @@ object CoronaUtils {
 
             cases.recoveredTotal = data.getInt("recovered")
             cases.recoveredToday = data.getInt("todayRecovered")
+        } catch (e: JSONException) {
+            Log.e(LOG_TAG, "Problem parsing the earthquake JSON results.", e)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return cases
+    }
+
+    private fun extractSateData(response: String) : ArrayList<CaseModel> {
+        val cases = ArrayList<CaseModel>()
+        if(response.isEmpty())
+            return cases
+
+        try {
         } catch (e: JSONException) {
             Log.e(LOG_TAG, "Problem parsing the earthquake JSON results.", e)
         } catch (e: ParseException) {

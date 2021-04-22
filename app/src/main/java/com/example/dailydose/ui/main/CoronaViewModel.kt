@@ -12,7 +12,17 @@ class CoronaViewModel : ViewModel() {
 
     fun getCountryCases(country: String) {
         viewModelScope.launch {
-            countryCases.postValue(CoronaUtils.fetchCases(apiCountryUrl + country))
+            countryCases.postValue(CoronaUtils.getCountryData(apiCountryUrl + country))
         }
+    }
+
+    private val apiStateUrl = "https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise"
+    val stateCasesList = viewModelScope.launch {
+        CoronaUtils.getStateCases(apiStateUrl)
+    }
+    val stateCases = MutableLiveData<CaseModel>()
+
+    fun getStateCases(state: String) :  {
+        stateCases.postValue()
     }
 }
