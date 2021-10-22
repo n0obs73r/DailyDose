@@ -26,3 +26,8 @@ and [RaviKumawat](https://github.com/ravi4k) for helping.
 
 ## Maintainer
 Aryan Dadheech <aryan.prince999@gmail.com>
+
+
+## Screenshots:
+![alt text](https://i.imgur.com/bkoGoJS.jpg)
+![alt text](https://i.imgur.com/dGw4mhE.jpg)
